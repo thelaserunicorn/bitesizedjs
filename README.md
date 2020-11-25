@@ -1,1 +1,1 @@
-series of short vanilla javascript projects.
+series of short and useless vanilla javascript projects.
