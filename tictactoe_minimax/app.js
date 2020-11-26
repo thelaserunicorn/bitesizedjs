@@ -10,6 +10,33 @@ const HUMAN = -1;
 const COMP = +1;
 
 /* Function to heuristic evaluation of state. */
+
+/* This function tests if a specific player wins */
+function gameOver(state, player) {
+	let win_state = [
+		[state[0][0], state[0][1], state[0][2]],
+		[state[1][0], state[1][1], state[1][2]],
+		[state[2][0], state[2][1], state[2][2]],
+		[state[0][0], state[1][0], state[2][0]],
+		[state[0][1], state[1][1], state[2][1]],
+		[state[0][2], state[1][2], state[2][2]],
+		[state[0][0], state[1][1], state[2][2]],
+		[state[2][0], state[1][1], state[0][2]],
+	];
+	
+	for (let i = 0; i < 8; i++) {
+		let line = win_state[i];
+		let filled = 0;
+		for (let j = 0; j < 3; j++) {
+			if (line[j] == player)
+			filled++;
+		}
+		if (filled == 3)
+		return true;
+	}
+	return false;
+}
+
 function evalute(state) {
 	let score = 0;
 
@@ -25,33 +52,6 @@ function evalute(state) {
 	return score;
 }
 
-/* This function tests if a specific player wins */
-function gameOver(state, player) {
-	let win_state = [
-		[state[0][0], state[0][1], state[0][2]],
-		[state[1][0], state[1][1], state[1][2]],
-		[state[2][0], state[2][1], state[2][2]],
-		[state[0][0], state[1][0], state[2][0]],
-		[state[0][1], state[1][1], state[2][1]],
-		[state[0][2], state[1][2], state[2][2]],
-		[state[0][0], state[1][1], state[2][2]],
-		[state[2][0], state[1][1], state[0][2]],
-	];
-
-	for (let i = 0; i < 8; i++) {
-		let line = win_state[i];
-		let filled = 0;
-		for (let j = 0; j < 3; j++) {
-			if (line[j] == player)
-				filled++;
-		}
-		if (filled == 3)
-			return true;
-	}
-	return false;
-}
-
-/* This function test if the human or computer wins */
 function gameOverAll(state) {
 	return gameOver(state, HUMAN) || gameOver(state, COMP);
 }
@@ -68,7 +68,6 @@ function emptyCells(state) {
 	return cells;
 }
 
-/* A move is valid if the chosen cell is empty */
 function validMove(x, y) {
 	let empties = emptyCells(board);
 	try {
@@ -95,7 +94,6 @@ function setMove(x, y, player) {
 }
 
 /* *** AI function that choice the best move *** */
-// Read more on https://github.com/Cledersonbc/tic-tac-toe-minimax/
 function minimax(state, depth, player) {
 	let best;
 
@@ -213,7 +211,7 @@ function clickedCell(cell) {
 
 /* Restart the game*/
 function restartBnt(button) {
-	if (button.value == "Start AI") {
+	if (button.value == "Start") {
 		aiTurn();
 		button.disabled = true;
 	}
@@ -229,7 +227,7 @@ function restartBnt(button) {
 				htmlBoard.innerHTML = "";
 			}
 		}
-		button.value = "Start AI";
+		button.value = "Start";
 		msg = document.getElementById("message");
 		msg.innerHTML = "";
 	}

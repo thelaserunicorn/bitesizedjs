@@ -3,14 +3,32 @@
 body {
 	margin: 0;
     padding: 0;
-    font-family: 'Roboto Mono', monospace;
+	font-family: 'Roboto Mono', monospace;
+	background-color: #444;
+
+    animation: haha 5s infinite;
+}
+
+@keyframes haha {
+    0%, 100% {
+      background-color: #d6603c;
+      background-position: 0% 50%;
+    }
+    50% {
+      background-color: #ee5252;
+      background-position: 100% 50%;
+    }
+    75% {
+      background-color: #da069a;
+      background-position: 0% 50%;
+	}
 }
 
 header {
-	background-color: #00AEEA;
+	background-color: #202020;
 	color: #eee;
 	text-align: center;
-	height: 90px;
+	height: 120px;
 	padding-top: 5px;
 	display: block;
 	margin-top: 0px;
@@ -32,6 +50,7 @@ p {
 	margin-right: auto;
 	display: block;
 	font-family: 'Roboto Mono', monospace;
+	color: white;
 }
 
 a {
@@ -96,25 +115,30 @@ a:visited {
 	margin-left: auto;
 	margin-right: auto;
 	width: 200px;
-	background: #00AEEA;
+	background: #ffffff;
 	font-size: 1.5em;
-	color: #FFF;
-	border: none;
+	color: rgb(0, 0, 0);
+	border: 0.5px solid black;
+	border-width: 2px;
+
 	border-radius: 6px;
 	cursor: pointer;
 	font-family: 'Roboto Mono', monospace;
+  	transition: 0.3s;
 	
 }
 
 #bnt-restart:hover {
-	background: #1DC5FF;
+	background: #000000;
+	color: white;
 }
 
 #bnt-restart:active {
-	background: #0787B3;
+	background: #020202;
+	color: white;
 }
 
 #bnt-restart:disabled {
-	color: #444;
-	background: #CECECE;
+	color: rgb(255, 255, 255);
+	background: #000000;
 }
