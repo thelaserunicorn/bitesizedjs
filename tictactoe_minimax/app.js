@@ -9,9 +9,7 @@ const board = [
 const HUMAN = -1;
 const COMP = +1;
 
-/* Function to heuristic evaluation of state. */
 
-/* This function tests if a specific player wins */
 function gameOver(state, player) {
 	let win_state = [
 		[state[0][0], state[0][1], state[0][2]],
@@ -93,7 +91,7 @@ function setMove(x, y, player) {
 	}
 }
 
-/* *** AI function that choice the best move *** */
+/* Minimax*/
 function minimax(state, depth, player) {
 	let best;
 
